@@ -9,6 +9,8 @@ import nextstep.security.access.hierarchicalroles.RoleHierarchy;
 import nextstep.security.access.hierarchicalroles.RoleHierarchyImpl;
 import nextstep.security.authentication.AuthenticationException;
 import nextstep.security.authentication.BasicAuthenticationFilter;
+import nextstep.security.authentication.OauthGithubAccessTokenRequestFilter;
+import nextstep.security.authentication.OauthGithubAuthenticationFilter;
 import nextstep.security.authentication.UsernamePasswordAuthenticationFilter;
 import nextstep.security.authorization.*;
 import nextstep.security.config.DefaultSecurityFilterChain;
@@ -59,6 +61,8 @@ public class SecurityConfig {
                         new SecurityContextHolderFilter(),
                         new UsernamePasswordAuthenticationFilter(userDetailsService()),
                         new BasicAuthenticationFilter(userDetailsService()),
+                        new OauthGithubAuthenticationFilter(),
+                        new OauthGithubAccessTokenRequestFilter(),
                         new AuthorizationFilter(requestAuthorizationManager())
                 )
         );
